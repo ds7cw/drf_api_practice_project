@@ -41,6 +41,7 @@ USER_APPS = [
 
 EXTERNAL_APPS = [
     'django_extensions',
+    'rest_framework',
 ]
 
 INSTALLED_APPS = [
