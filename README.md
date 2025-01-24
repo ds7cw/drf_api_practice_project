@@ -25,3 +25,11 @@ By default, the API will return the format specified by the headers, which in th
 https://www.django-rest-framework.org/topics/browsable-api/#formats
 
 ---
+
+**Django Silk**
+
+Silk is a *live* profiling and *inspection tool* for the Django framework. Silk intercepts and *stores HTTP requests and database queries* before presenting them in a user interface for further inspection.
+
+https://pypi.org/project/django-silk/
+
+---
