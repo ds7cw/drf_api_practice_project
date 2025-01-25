@@ -33,3 +33,30 @@ Silk is a *live* profiling and *inspection tool* for the Django framework. Silk 
 https://pypi.org/project/django-silk/
 
 ---
+
+**prefetch_related**
+
+`prefetch_related` is designed to stop the deluge of database queries that is caused by accessing related objects. It returns a `QuerySet` that will automatically retrieve, in a single batch, related objects for each of the specified lookups.
+
+`prefetch_related` does a separate lookup for each relationship, and does the ‘joining’ in Python. This allows it to prefetch many-to-many, many-to-one, and `GenericRelation` objects which cannot be done using `select_related`, in addition to the foreign key and one-to-one relationships that are supported by select_related.
+
+https://docs.djangoproject.com/en/5.1/ref/models/querysets/#prefetch-related
+
+---
+
+**DRF Generic Views**
+
+The generic views provided by REST framework allow you to quickly build API views that map closely to your database models.
+
+```python
+from rest_framework import generics
+
+
+class UserList(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+```
+
+https://www.django-rest-framework.org/api-guide/generic-views/#generic-views
+
+---
