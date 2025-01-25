@@ -60,3 +60,23 @@ class UserList(generics.ListCreateAPIView):
 https://www.django-rest-framework.org/api-guide/generic-views/#generic-views
 
 ---
+
+**The get_queryset() method**
+
+`get_queryset(self)` returns the queryset that should be used for list views, and that should be used as the base for lookups in detail views. Defaults to returning the queryset specified by the `queryset` attribute.
+
+This method should always be used rather than accessing `self.queryset` directly, as `self.queryset` gets evaluated only once, and those results are cached for all subsequent requests.
+
+May be overridden to provide dynamic behavior, such as returning a queryset, that is specific to the user making the request.
+
+https://www.django-rest-framework.org/api-guide/generic-views/#methods
+
+---
+
+**Django InlineModelAdmin**
+
+The admin interface has the ability to edit models on the same page as a parent model. These are called inlines.
+
+https://docs.djangoproject.com/en/5.1/ref/contrib/admin/#django.contrib.admin.InlineModelAdmin
+
+---
