@@ -80,3 +80,18 @@ The admin interface has the ability to edit models on the same page as a parent 
 https://docs.djangoproject.com/en/5.1/ref/contrib/admin/#django.contrib.admin.InlineModelAdmin
 
 ---
+
+**Writing and Running Tests**
+
+Django’s unit tests use a Python standard library module: `unittest`. This module defines tests using a class-based approach.
+When you run your tests, the default behavior of the test utility is to find all the test case classes (that is, subclasses of `unittest.TestCase`) in any file whose name begins with `test`, automatically build a test suite out of those test case classes, and run that suite.
+
+Once you’ve written tests, run them using the `test` command of your project’s `manage.py` utility:
+
+```script
+$ ./manage.py test
+```
+
+https://docs.djangoproject.com/en/5.1/topics/testing/overview/
+
+---
