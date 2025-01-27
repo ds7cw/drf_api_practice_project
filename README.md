@@ -95,3 +95,15 @@ $ ./manage.py test
 https://docs.djangoproject.com/en/5.1/topics/testing/overview/
 
 ---
+
+**REST framework Class-based Views**
+
+REST framework provides an `APIView` class, which subclasses Django's `View` class.
+- Requests passed to the handler methods will be REST framework's `Request` instances, not Django's `HttpRequest` instances.
+- Handler methods may return REST framework's `Response`, instead of Django's `HttpResponse`. The view will manage content negotiation and setting the correct renderer on the response.
+- Any `APIException` exceptions will be caught and mediated into appropriate responses.
+- Incoming requests will be authenticated and appropriate permission and/or throttle checks will be run before dispatching the request to the handler method.
+
+https://www.django-rest-framework.org/api-guide/views/
+
+---
