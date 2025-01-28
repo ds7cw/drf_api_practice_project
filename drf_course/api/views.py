@@ -10,10 +10,9 @@ from api.models import Order, OrderItem, Product
 from api.serializers import OrderSerializer, OrderItemSerializer, ProductInfoSerializer, ProductSerializer
 
 
-class ProductListAPIView(generics.ListAPIView):
+class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-
 
 class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()

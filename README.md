@@ -107,3 +107,15 @@ REST framework provides an `APIView` class, which subclasses Django's `View` cla
 https://www.django-rest-framework.org/api-guide/views/
 
 ---
+
+**DRF ListCreateAPIView**
+
+Used for read-write endpoints to represent a collection of model instances. Provides `get` and `post` method handlers.
+
+Extends: `GenericAPIView`, `ListModelMixin`, `CreateModelMixin`
+
+https://www.django-rest-framework.org/api-guide/generic-views/#listcreateapiview
+
+https://www.cdrf.co/3.14/rest_framework.generics/ListCreateAPIView.html
+
+---
