@@ -119,3 +119,15 @@ https://www.django-rest-framework.org/api-guide/generic-views/#listcreateapiview
 https://www.cdrf.co/3.14/rest_framework.generics/ListCreateAPIView.html
 
 ---
+
+**Overview of access restriction methods**
+
+REST framework offers three different methods to customize access restrictions on a case-by-case basis. These apply in different scenarios and have different effects and limitations.
+
+- `queryset` / `get_queryset()`: Limits the general visibility of existing objects from the database. The queryset limits which objects will be listed and which objects can be modified or deleted. The `get_queryset()` method can apply different querysets based on the current action.
+- `permission_classes` / `get_permissions()`: General permission checks based on the current action, request and targeted object. Object level permissions can only be applied to retrieve, modify and deletion actions. Permission checks for list and create will be applied to the entire object type. (In case of list: subject to restrictions in the queryset.)
+- `serializer_class` / `get_serializer()`: Instance level restrictions that apply to all objects on input and output. The serializer may have access to the request context. The `get_serializer()` method can apply different serializers based on the current action.
+
+https://www.django-rest-framework.org/api-guide/permissions/#overview-of-access-restriction-methods
+
+---

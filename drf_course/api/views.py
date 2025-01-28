@@ -2,7 +2,7 @@ from django.db.models import Max
 from django.shortcuts import get_object_or_404
 from rest_framework import generics
 from rest_framework.decorators import api_view
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -13,6 +13,13 @@ from api.serializers import OrderSerializer, OrderItemSerializer, ProductInfoSer
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+    def get_permissions(self):
+        self.permission_classes = [AllowAny]
+        if self.request.method == 'POST':
+            self.permission_classes = [IsAuthenticated]
+        return super().get_permissions()
+
 
 class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
