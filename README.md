@@ -131,3 +131,16 @@ REST framework offers three different methods to customize access restrictions o
 https://www.django-rest-framework.org/api-guide/permissions/#overview-of-access-restriction-methods
 
 ---
+
+**Simple JSON Web Token Authentication**
+
+Simple JWT provides a `JSON` Web Token authentication backend for the `Django REST Framework`. It aims to cover the most common use cases of JWTs by offering a conservative set of default features. It also aims to be easily extensible in case a desired feature is not present.
+
+Install via the package manager:
+```script
+$ pip install djangorestframework-simplejwt
+```
+
+https://django-rest-framework-simplejwt.readthedocs.io/en/latest/index.html
+
+---
