@@ -144,3 +144,15 @@ $ pip install djangorestframework-simplejwt
 https://django-rest-framework-simplejwt.readthedocs.io/en/latest/index.html
 
 ---
+
+**RetrieveUpdateDestroyAPIView**
+
+Used for **read-write-delete** endpoints to represent **a single model instance**.
+
+Provides `get`, `put`, `patch` and `delete` method handlers.
+
+Extends: `GenericAPIView`, `RetrieveModelMixin`, `UpdateModelMixin`, `DestroyModelMixin`
+
+https://www.django-rest-framework.org/api-guide/generic-views/#retrieveupdatedestroyapiview
+
+---
