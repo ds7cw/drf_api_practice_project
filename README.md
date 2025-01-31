@@ -156,3 +156,28 @@ Extends: `GenericAPIView`, `RetrieveModelMixin`, `UpdateModelMixin`, `DestroyMod
 https://www.django-rest-framework.org/api-guide/generic-views/#retrieveupdatedestroyapiview
 
 ---
+
+**DRF Spectacular**
+
+**drf-spectacular** is an **OpenAPI 3** schema generation library with explicit focus on extensibility, customizability and client generation. It is the recommended way for generating and presenting OpenAPI schemas.
+
+drf-spectacular has 3 goals:
+- Extract as much schema information from DRF as possible.
+
+- Provide flexibility to make the schema usable in the real world (not only toy examples).
+
+- Generate a schema that works well with the most popular client generators.
+
+Install drf-spectacular:
+```script
+$ pip install drf-spectacular
+```
+
+Generate schema:
+```script
+$ ./manage.py spectacular --color --file schema.yml
+```
+
+https://drf-spectacular.readthedocs.io/en/latest/readme.html#installation
+
+---
