@@ -181,3 +181,22 @@ $ ./manage.py spectacular --color --file schema.yml
 https://drf-spectacular.readthedocs.io/en/latest/readme.html#installation
 
 ---
+
+**DRF Filtering & django-filter**
+
+The `django-filter` library includes a `DjangoFilterBackend` class which supports highly customizable field filtering for REST framework.
+
+To use `DjangoFilterBackend`, first install `django-filter`.
+
+```script
+$ pip install django-filter
+```
+https://www.django-rest-framework.org/api-guide/filtering/#custom-generic-filtering
+
+https://django-filter.readthedocs.io/en/stable/guide/usage.html
+
+```script
+GET /products/?name__iexact=watch
+```
+
+---
