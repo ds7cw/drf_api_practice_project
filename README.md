@@ -200,3 +200,29 @@ GET /products/?name__iexact=watch
 ```
 
 ---
+
+**DRF SearchFilter**
+
+The `SearchFilter` class supports simple single query parameter based searching, and is based on the Django admin's search functionality.
+
+The `SearchFilter` class will only be applied if the view has a `search_fields` attribute set. The `search_fields` attribute should be a list of names of text type fields on the model, such as `CharField` or `TextField`.
+
+```python
+from rest_framework import filters
+
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['username', 'email']
+```
+
+This will allow the client to filter the items in the list by making queries such as:
+
+```
+http://example.com/api/users?search=russell
+```
+
+https://www.django-rest-framework.org/api-guide/filtering/#searchfilter
+
+---
