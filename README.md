@@ -248,3 +248,24 @@ class IsOwnerFilterBackend(filters.BaseFilterBackend):
 https://www.django-rest-framework.org/api-guide/filtering/#custom-generic-filtering
 
 ---
+
+**Pagination**
+
+REST framework includes support for customizable pagination styles. This allows you to modify how large result sets are split into individual pages of data.
+
+Pagination is only performed automatically if you're using the generic views or viewsets. If you're using a regular `APIView`, you'll need to call into the pagination API yourself to ensure you return a paginated response. 
+
+Pagination can be turned off by setting the pagination class to `None`.
+
+The pagination style may be set globally, using the `DEFAULT_PAGINATION_CLASS` and `PAGE_SIZE` setting keys. For example, to use the built-in limit/offset pagination, you would do something like this:
+
+```python
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
+}
+```
+
+https://www.django-rest-framework.org/api-guide/pagination/
+
+---
