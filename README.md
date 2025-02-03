@@ -226,3 +226,25 @@ http://example.com/api/users?search=russell
 https://www.django-rest-framework.org/api-guide/filtering/#searchfilter
 
 ---
+
+**Custom Generic Filter**
+
+You can provide your own generic filtering backend, or write an installable app for other developers to use.
+
+To do so override `BaseFilterBackend`, and override the `.filter_queryset(self, request, queryset, view)` method. The method should return a new, filtered queryset.
+
+As well as allowing clients to perform searches and filtering, generic filter backends can be useful for restricting which objects should be visible to any given request or user.
+
+You might want to restrict users to only being able to see objects they created:
+```python
+class IsOwnerFilterBackend(filters.BaseFilterBackend):
+    """
+    Filter that only allows users to see their own objects.
+    """
+    def filter_queryset(self, request, queryset, view):
+        return queryset.filter(owner=request.user)
+```
+
+https://www.django-rest-framework.org/api-guide/filtering/#custom-generic-filtering
+
+---
