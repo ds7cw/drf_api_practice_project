@@ -269,3 +269,29 @@ REST_FRAMEWORK = {
 https://www.django-rest-framework.org/api-guide/pagination/
 
 ---
+
+**DRF Viewsets**
+
+A `ViewSet` class is simply a type of class-based View, that does not provide any method handlers such as `.get()` or `.post()`, and instead provides actions such as `.list()` and `.create()`.
+
+The method handlers for a `ViewSet` are only bound to the corresponding actions at the point of finalizing the view, using the `.as_view()` method.
+
+Typically, rather than explicitly registering the views in a viewset in the urlconf, you'll register the viewset with a *router class*, that automatically determines the urlconf for you.
+
+```python
+from myapp.views import UserViewSet
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r'users', UserViewSet, basename='user')
+urlpatterns = router.urls
+```
+
+There are two main advantages of using a `ViewSet` class over using a `View` class.
+
+- Repeated logic can be combined into a single class. We only need to specify the queryset once, and it'll be used across multiple views.
+- By using routers, we no longer need to deal with wiring up the URL conf ourselves.
+
+https://www.django-rest-framework.org/api-guide/viewsets/
+
+---
