@@ -295,3 +295,19 @@ There are two main advantages of using a `ViewSet` class over using a `View` cla
 https://www.django-rest-framework.org/api-guide/viewsets/
 
 ---
+
+**Mark Extra Actions for Routing**
+
+If you have ad-hoc methods that should be routable, you can mark them as such with the `@action` decorator. Like regular actions, extra actions may be intended for either a single object, or an entire collection. To indicate this, set the `detail` argument to `True` or `False`. The router will configure its URL patterns accordingly. e.g., the `DefaultRouter` will configure detail actions to contain `pk` in their URL patterns.
+
+The `action` decorator will route `GET` requests by default, but may also accept other HTTP methods by setting the `methods` argument. For example:
+
+```python
+ @action(detail=True, methods=['post', 'delete'])
+    def unset_password(self, request, pk=None):
+       ...
+```
+
+https://www.django-rest-framework.org/api-guide/viewsets/#marking-extra-actions-for-routing
+
+---
