@@ -311,3 +311,28 @@ The `action` decorator will route `GET` requests by default, but may also accept
 https://www.django-rest-framework.org/api-guide/viewsets/#marking-extra-actions-for-routing
 
 ---
+
+**Additional keyword arguments**
+
+There is a shortcut allowing you to specify arbitrary additional keyword arguments on fields, using the `extra_kwargs` option. As in the case of `read_only_fields`, this means you do not need to explicitly declare the field on the serializer.
+
+This option is a dictionary, mapping field names to a dictionary of keyword arguments. For example:
+```python
+class CreateUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['email', 'username', 'password']
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        user = User(email=validated_data['email'], username=validated_data['username'])
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
+```
+
+If the field has already been explicitly declared on the serializer class, then the `extra_kwargs` option will be ignored.
+
+https://www.django-rest-framework.org/api-guide/serializers/#additional-keyword-arguments
+
+---
