@@ -336,3 +336,18 @@ If the field has already been explicitly declared on the serializer class, then 
 https://www.django-rest-framework.org/api-guide/serializers/#additional-keyword-arguments
 
 ---
+
+**Writing .update() methods for nested representations**
+
+For updates you'll want to think carefully about how to handle updates to relationships. For example if the data for the relationship is `None`, or not provided, which of the following should occur?
+
+- Set the relationship to `NULL` in the database.
+- Delete the associated instance.
+- Ignore the data and leave the instance as it is.
+- Raise a validation error.
+
+Because the behavior of nested creates & updates can be ambiguous, and may require complex dependencies between related models, REST framework 3 requires you to always write these methods explicitly. The default `ModelSerializer` `.create()` and `.update()` methods do not include support for writable nested representations.
+
+https://www.django-rest-framework.org/api-guide/serializers/#writing-update-methods-for-nested-representations
+
+---
