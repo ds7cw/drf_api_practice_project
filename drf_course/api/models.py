@@ -2,6 +2,7 @@ import uuid
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.exceptions import ValidationError
 
 
 class User(AbstractUser):
@@ -12,7 +13,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    stock = models.PositiveIntegerField()
+    stock = models.PositiveIntegerField(default=0)
     image = models.ImageField(upload_to='products/', blank=True, null=True)
 
     @property
@@ -21,6 +22,16 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def clean(self):
+        if self.price < 0:
+            raise ValidationError('Price cannot be negative')
+        if self.stock < 0:
+            raise ValidationError('Stock count cannot be negative')
+
+    def get_discounted_price(self, discount_percentage):
+        """Calculate and return the discounted price."""
+        return self.price * (1 - discount_percentage / 100)
 
 
 class Order(models.Model):
