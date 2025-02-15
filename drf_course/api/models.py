@@ -16,6 +16,18 @@ class Product(models.Model):
     stock = models.PositiveIntegerField(default=0)
     image = models.ImageField(upload_to='products/', blank=True, null=True)
 
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                condition=models.Q(price__gte=0),
+                name='price_gte_0',
+            ),
+            models.CheckConstraint(
+                condition=models.Q(stock__gte=0),
+                name='stock_gte_0',
+            ),
+        ]
+
     @property
     def in_stock(self):
         return self.stock > 0

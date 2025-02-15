@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
@@ -31,3 +32,25 @@ class ProductModelTest(TestCase):
         self.product.stock = -5
         with self.assertRaises(ValidationError):
             self.product.clean()
+
+    def test_negative_price_constraint(self):
+        """Test that a product with a negative price cannot be saved due to the database constraint."""
+        product = Product(name="Negative Price Product", price=-1.00, stock=5)
+        with self.assertRaises(IntegrityError):
+            product.save()
+
+    def test_zero_price_constraint(self):
+        """Test that a product with a price of zero can be saved to the database."""
+        product = Product(name="Zero Price Product", price=0, stock=5)
+        product.save()
+
+    def test_negative_stock_count_constraint(self):
+        """Test that a product with a negative stock count cannot be saved due to the database constraint."""
+        product = Product(name="Negative Stock Count Product", price=5, stock=-5)
+        with self.assertRaises(IntegrityError):
+            product.save()
+
+    def test_zero_stock_count_constraint(self):
+        """Test that a product with a stock count of zero can be saved to the database."""
+        product = Product(name="Zero Stock Count Product", price=5, stock=0)
+        product.save()
