@@ -351,3 +351,19 @@ Because the behavior of nested creates & updates can be ambiguous, and may requi
 https://www.django-rest-framework.org/api-guide/serializers/#writing-update-methods-for-nested-representations
 
 ---
+
+**Django TestCase class**
+
+This is the most common class to use for writing tests in Django. It inherits from `TransactionTestCase` (and by extension `SimpleTestCase`). If your Django application doesn’t use a database, use `SimpleTestCase`.
+
+The class:
+
+- Wraps the tests within two nested `atomic()` blocks: one for the whole class and one for each test. Therefore, if you want to test some specific database transaction behavior, use `TransactionTestCase`.
+
+- Checks deferrable database constraints at the end of each test.
+
+Classmethod `TestCase.setUpTestData()`. The class-level `atomic` block described above allows the creation of initial data at the class level, once for the whole `TestCase`. This technique allows for faster tests as compared to using `setUp()`.
+
+https://docs.djangoproject.com/en/5.1/topics/testing/tools/#django.test.TestCase
+
+---

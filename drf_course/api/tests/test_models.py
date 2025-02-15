@@ -8,8 +8,11 @@ from api.models import Product
 # python manage.py test
 # python manage.py test api.tests.test_models
 class ProductModelTest(TestCase):
-    def setUp(self):
-        self.product = Product(name="Test Product", price=100.00, stock=10)
+    """The ProductModelTest class contains unit tests related to the Product model."""
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.product = Product(name="Test Product", price=100.00, stock=10)
 
     def test_in_stock_property(self):
         self.assertTrue(self.product.in_stock)
