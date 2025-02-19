@@ -10,6 +10,7 @@ urlpatterns = [
     # path('orders/', views.OrderListAPIView.as_view()), # replaced by views.OrderViewSet
     # path('user-orders/', views.UserOrderListAPIView.as_view(), name='user-orders'),
     path('index/', views.IndexPageTestView.as_view(), name="index"),
+    path('products-test/', views.ProductTestListView.as_view(), name='products-test'),
 ]
 
 router = DefaultRouter()

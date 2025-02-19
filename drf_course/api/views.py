@@ -1,6 +1,7 @@
 from django.db.models import Max
 from django.shortcuts import render
 from django.views import View
+from django.views.generic import ListView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, generics, viewsets
 from rest_framework.decorators import action
@@ -108,3 +109,12 @@ class UserListView(generics.ListAPIView):
 class IndexPageTestView(View):
     def get(self, request):
         return render(request, 'index.html')
+
+class ProductsPageTestView(View):
+    def get(self, request):
+        return render(request, 'index.html')
+
+class ProductTestListView(ListView):
+    model = Product
+    template_name = 'products-test.html'
+    context_object_name = 'products'
