@@ -1,5 +1,5 @@
 from django.db.models import Max
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views import View
 from django.views.generic import ListView
 from django_filters.rest_framework import DjangoFilterBackend
@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from api.filters import ProductFilter, InStockFilterBackend, OrderFilter
+from api.forms import ProductForm
 from api.models import Order, OrderItem, Product, User
 from api.serializers import (OrderSerializer, OrderItemSerializer, ProductInfoSerializer,
                              ProductSerializer, OrderCreateSerializer, UserSerializer)
@@ -110,11 +111,33 @@ class IndexPageTestView(View):
     def get(self, request):
         return render(request, 'index.html')
 
+
 class ProductsPageTestView(View):
     def get(self, request):
         return render(request, 'index.html')
+
 
 class ProductTestListView(ListView):
     model = Product
     template_name = 'products-test.html'
     context_object_name = 'products'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = ProductForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('products-test')
+        else:
+            context = self.get_context_data()
+            context['form'] = form
+            return self.render_to_response(context)
+
+    def get(self, request, *args, **kwargs):
+        self.object_list = self.get_queryset()
+        context = self.get_context_data(object_list=self.object_list)
+        return self.render_to_response(context)
