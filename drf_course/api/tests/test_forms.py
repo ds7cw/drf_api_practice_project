@@ -34,7 +34,7 @@ class ProductFormTest(TestCase):
         self.assertTrue("form" in response.context)
 
         form = response.context['form']
-        self.assertFormError(form, 'name', 'This field is required')
+        self.assertFormError(form, 'name', 'This field is required.')
         self.assertFormError(form, 'price', 'Price cannot be negative')
-        self.assertFormError(form, 'stock', 'Stock count cannot be negative')
+        self.assertFormError(form, 'stock', 'Ensure this value is greater than or equal to 0.')
         self.assertFalse(Product.objects.exists())

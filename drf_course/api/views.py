@@ -133,6 +133,7 @@ class ProductTestListView(ListView):
             form.save()
             return redirect('products-test')
         else:
+            self.object_list = self.get_queryset()  # Ensure object_list is set
             context = self.get_context_data()
             context['form'] = form
             return self.render_to_response(context)
