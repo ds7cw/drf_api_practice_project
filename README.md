@@ -367,3 +367,28 @@ Classmethod `TestCase.setUpTestData()`. The class-level `atomic` block described
 https://docs.djangoproject.com/en/5.1/topics/testing/tools/#django.test.TestCase
 
 ---
+
+**Caching with Redis and Django**
+
+To cache something is to save the result of an expensive calculation so that you don’t have to perform the calculation next time.
+
+Redis is an in-memory database that can be used for caching. To begin you’ll need a Redis server running either locally or on a remote machine.
+
+```python
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379",
+    }
+}
+```
+
+https://docs.djangoproject.com/en/5.1/topics/cache/
+
+https://github.com/jazzband/django-redis
+
+Django provides a `method_decorator` to use decorators with class based views. This can be used with other cache decorators such as `cache_page`, `vary_on_cookie` and `vary_on_headers`.
+
+https://www.django-rest-framework.org/api-guide/caching/
+
+---
